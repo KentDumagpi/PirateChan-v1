@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="usersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="customer_table">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="pwd" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="acctype" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'users.dbo.ViewUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ViewUsers">
+    <Key>
+      <PropertyRef Name="userID" />
+      <PropertyRef Name="username" />
+      <PropertyRef Name="email" />
+      <PropertyRef Name="acctype" />
+    </Key>
+    <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="acctype" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <Function Name="DeleteUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="username" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="pwd" Type="varchar" Mode="In" />
+    <Parameter Name="acctype" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UpdateUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userID" Type="int" Mode="In" />
+    <Parameter Name="username" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="pwd" Type="varchar" Mode="In" />
+    <Parameter Name="acctype" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="user_acc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="pwd" Type="varchar" Mode="In" />
+    <Parameter Name="acctype" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="usersModelStoreContainer">
+    <EntitySet Name="customer_table" EntityType="Self.customer_table" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ViewUsers" EntityType="Self.ViewUsers" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[ViewUsers].[userID] AS [userID], 
+[ViewUsers].[username] AS [username], 
+[ViewUsers].[email] AS [email], 
+[ViewUsers].[acctype] AS [acctype]
+FROM [dbo].[ViewUsers] AS [ViewUsers]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

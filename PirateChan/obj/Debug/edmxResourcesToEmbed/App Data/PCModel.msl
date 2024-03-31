@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="usersModelStoreContainer" CdmEntityContainer="usersEntities">
+    <EntitySetMapping Name="customer_table">
+      <EntityTypeMapping TypeName="usersModel.customer_table">
+        <MappingFragment StoreEntitySet="customer_table">
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="pwd" ColumnName="pwd" />
+          <ScalarProperty Name="acctype" ColumnName="acctype" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewUsers">
+      <EntityTypeMapping TypeName="usersModel.ViewUsers">
+        <MappingFragment StoreEntitySet="ViewUsers">
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="acctype" ColumnName="acctype" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="DeleteUsers" FunctionName="usersModel.Store.DeleteUsers" />
+    <FunctionImportMapping FunctionImportName="UpdateUsers" FunctionName="usersModel.Store.UpdateUsers" />
+    <FunctionImportMapping FunctionImportName="user_acc" FunctionName="usersModel.Store.user_acc" />
+  </EntityContainerMapping>
+</Mapping>
